@@ -67,7 +67,7 @@ Possible memorable closing lines (use your own):
 
 Remember: This should feel like a real glimpse into a possible future, not a fairy tale. Include small, authentic details that make the narrative believable."""
     
-    model = genai.GenerativeModel("gemini-2.5-flash-lite")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     response = model.generate_content(prompt)
     
     return response.text
