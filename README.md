@@ -1,143 +1,108 @@
-# 🔮 Future Narrator
+🔮 Stardance
 
-An AI-powered web application that generates personalized future narratives based on your age, dream profession, desired location, and target year. **100% FREE** - Uses Google Gemini's free tier!
+Type in your age, your dream job, the city you want to end up in, and a year to aim for — Stardance writes you a short story about that future. It's powered by Google Gemini, and it's free to run.
 
-## Features
+I built this because "picture your future self" always sounded like advice from a poster in a guidance counselor's office. Actually reading a few paragraphs about it hits differently.
 
-✨ **AI-Powered Narratives** - Uses Google Gemini (FREE tier) to generate creative, inspiring stories about your potential future
-🎯 **Personalized** - Customized narratives based on your inputs
-🌍 **Location-Based** - Explores your dreams in your desired city/location
-📅 **Year-Based** - Projects forward to a specific year you choose
-🎨 **Beautiful UI** - Modern, gradient-based interface with smooth animations
+What it does
+Takes four inputs — age, profession, location, year — and turns them into a short narrative
+Runs entirely on Gemini's free tier, so there's no billing to set up
+Clean, minimal interface — built to get out of the way and let the story do the work
+No two generations are identical — regenerate as many times as you want
+Before you start
 
-## Prerequisites
+You'll need:
 
-- Python 3.8+
-- Google Gemini API key (FREE - from https://aistudio.google.com/app/apikey)
+Python 3.8 or newer
+A Gemini API key — grab one free at https://aistudio.google.com/app/apikey (no card required)
+Getting it running
 
-## Setup Instructions
+1. Get into the project folder
 
-### 1. Clone/Download the Project
-Navigate to the project directory:
-```bash
-cd future-narrator
-```
+bash
+cd stardance
 
-### 2. Create Virtual Environment (Optional but Recommended)
-```bash
+2. (Optional) Set up a virtual environment
+
+bash
 python -m venv venv
-```
 
-Activate it:
-- **Windows**: `venv\Scripts\activate`
-- **macOS/Linux**: `source venv/bin/activate`
+Then activate it:
 
-### 3. Install Dependencies
-```bash
+Windows: venv\Scripts\activate
+macOS/Linux: source venv/bin/activate
+
+3. Install the dependencies
+
+bash
 pip install -r requirements.txt
-```
 
-### 4. Set Up Environment Variables
-Create a `.env` file in the project root (copy from `.env.example`):
-```
+4. Add your API key
+
+Copy .env.example to .env and drop your key in:
+
 GOOGLE_API_KEY=your_actual_api_key_here
-```
 
-Get your **FREE** API key from https://aistudio.google.com/app/apikey (No credit card required!)
+5. Start it up
 
-### 5. Run the Application
-```bash
+bash
 python app.py
-```
 
-The app will start on `http://localhost:5000`
+6. Open it
 
-### 6. Open in Browser
-Navigate to http://localhost:5000 in your web browser
+Head to http://localhost:5000 in your browser and you're in.
 
-## How to Use
+Using it
 
-1. **Enter Your Age** - Your current age (5-120 years)
-2. **Enter Dream Profession** - What do you want to become? (e.g., Robotics Engineer, Artist, etc.)
-3. **Enter Dream Location** - Where do you want to live? (e.g., Tokyo, Japan)
-4. **Enter Target Year** - A future year to explore (e.g., 2038)
-5. **Generate Story** - Click the button to generate your personalized future narrative
+Fill in:
 
-The AI will create a vivid, inspiring narrative about what your life could look like in that year and location, pursuing your dream profession.
+Age — where you're starting from (5–120)
+Dream profession — what you're aiming to become
+Dream location — where you picture yourself doing it
+Target year — how far out you're looking
 
-## Example
+Hit generate, and Stardance writes a short scene of that life — grounded enough to feel possible, not a fairy tale.
 
-**Input:**
-- Age: 15
-- Profession: Robotics Engineer
-- Location: Tokyo, Japan
-- Year: 2038
+Example: Age 15, Robotics Engineer, Tokyo, 2038 → a narrative dropping you into a day of that future — the work, the city, the version of you who got there.
 
-**Output:**
-A narrative describing a day in your life as a robotics engineer in Tokyo in 2038, weaving in your current age, challenges, achievements, and inspiring possibilities.
-
-## Project Structure
-
-```
-future-narrator/
-├── app.py                 # Flask backend application
-├── requirements.txt       # Python dependencies
-├── .env.example          # Environment variables template
-├── .env                  # Your actual environment variables (create this)
+Project layout
+stardance/
+├── app.py                 # Flask backend
+├── requirements.txt       # dependencies
+├── .env.example            # template for your API key
+├── .env                    # your actual key (you create this)
 └── templates/
-    └── index.html        # Frontend HTML/CSS/JavaScript
-```
+    └── index.html          # the frontend
+Built with
+Flask for the backend
+Google Gemini (free tier) for the writing
+HTML/CSS/vanilla JS for the frontend — no framework overhead
+$0 — genuinely free, no hidden usage caps that matter for personal use
+If something breaks
 
-## Technologies Used
+ModuleNotFoundError: No module named 'flask' → Activate your virtual environment, then pip install -r requirements.txt
 
-- **Backend**: Flask (Python)
-- **AI**: Google Gemini API (FREE tier)
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript
-- **Styling**: Modern gradient-based design with animations
-- **Cost**: 100% FREE - No charges, no credit card needed!
+Auth or API errors → Double check .env has a real GOOGLE_API_KEY in it, no quotes, no typos
 
-## Troubleshooting
+Port 5000 already taken → In app.py, change port=5000 to something else, like 5001
 
-### "ModuleNotFoundError: No module named 'flask'"
-Solution: Run `pip install -r requirements.txt` in your activated virtual environment
+Generation is slow → Give it up to a minute during high load. If it's still stuck, check your key and connection.
 
-### "APIError" or "Authentication failed"
-Solution: Make sure your `.env` file contains a valid `GOOGLE_API_KEY`
+A couple of notes
+Every input gets validated before it's sent off
+Stories are generated fresh each time — regenerate for a different take on the same future
+The prompt is tuned to write futures that feel earned, not sci-fi fantasy
+Your key stays local in .env — it only ever talks to Google
+Gemini's free tier gives you 60 requests/minute, which is more than you'll ever need here
+Ideas for later
+Export a narrative as a PDF to keep
+Compare a few different future scenarios side by side
+Share a story straight to social
+Keep a running history of past generations
+Support for more languages
+A mobile version
+License
 
-### Port 5000 already in use
-Solution: Change the port in `app.py` line 71 from `port=5000` to another port like `port=5001`
+Open source — take it, tweak it, make it yours.
 
-### Narrative takes too long to generate
-The API might be experiencing high load. Give it 30-60 seconds. If it continues, check your API key and internet connection.
-
-## Notes
-
-- The app validates all inputs before making API calls
-- Generated narratives are created in real-time and vary each time you generate
-- The AI prompt is designed to create realistic, achievable futures, not fantasies
-- Your API key is stored locally in the `.env` file and never sent anywhere except to Google
-- **Google Gemini FREE tier**: 60 requests per minute - More than enough for this app!
-
-## Future Enhancements
-
-Potential features to add:
-- Save/export generated narratives as PDF
-- Compare multiple future scenarios
-- Share narratives on social media
-- History of generated narratives
-- Multi-language support
-- Mobile app version
-
-## License
-
-Open source - feel free to modify and use!
-
-## Support
-
-If you encounter any issues, check:
-1. Your `.env` file is properly configured with `GOOGLE_API_KEY`
-2. Python version is 3.8+
-3. All dependencies are installed (`pip list`)
-4. Your Google Gemini API key is valid (get it free at https://aistudio.google.com/app/apikey)
-
-Enjoy exploring your future! 🚀
+Go see who you're becoming. 🚀
